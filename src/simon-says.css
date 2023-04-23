@@ -1,0 +1,69 @@
+html {
+  background-color: whitesmoke;
+}
+
+h1 {
+  background-color: whitesmoke;
+  display: flex;
+  justify-content: center;
+  border-style: outset;
+  width: 450px;
+  border-radius: 10px;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+h2 {
+  background-color: whitesmoke;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border-style: outset;
+  width: 350px;
+  border-radius: 10px;
+  margin: 0 auto;
+}
+
+#buttons-container {
+  display: flex;
+  align-items: center;
+  width: 405px;
+  height: 350px;
+  margin: 0 auto;
+}
+
+#buttons button {
+  width: 200px;
+  height: 150px;
+  opacity: 0.4;
+  transition: opacity 500ms;
+}
+
+#game-controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  margin: 0 auto;
+}
+
+.red {
+  background-color: red;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.green {
+  background-color: green;
+}
+
+.hidden {
+  display: none;
+}

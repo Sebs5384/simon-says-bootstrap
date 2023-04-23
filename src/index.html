@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>simon-says-class-10-r/argentina-programa</title>
+    <link rel="stylesheet" href="simon-says.css" />
+  </head>
+  <body>
+    <h1>SIMON SAYS</h1>
+    <h2 id="game-information">Press start to play</h2>
+    <div id="buttons-container">
+      <div id="buttons">
+        <button class="red" disabled></button>
+        <button class="blue" disabled></button>
+        <button class="yellow" disabled></button>
+        <button class="green" disabled></button>
+      </div>
+    </div>
+    <div id="game-controls">
+      <button id="start-button" class="">START</button>
+    </div>
+    <div id="turn-message">
+      <h2 class="hidden"></h2>
+    </div>
+    <div class="hidden">
+      <audio id="audio-red-button"><source src="game-audio/red-push.wav" type="audio/wav" /></audio>
+      <audio id="audio-blue-button"><source src="game-audio/blue-push.wav" type="audio/wav" /></audio>
+      <audio id="audio-yellow-button"><source src="game-audio/yellow-push.wav" type="audio/wav" /></audio>
+      <audio id="audio-green-button"><source src="game-audio/green-push.wav" type="audio/wav" /></audio>
+      <audio id="winner-sound"><source src="game-audio/winner.wav" type="audio/wav" /></audio>
+      <audio id="game-over-sound"><source src="game-audio/game-over.wav" type="audio/wav" /></audio>
+    </div>
+  </body>
+  <script src="simon-says.js"></script>
+</html>
