@@ -8,20 +8,21 @@
   </head>
   <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
   <body>
-    <h1>SIMON SAYS</h1>
-    <h2 id="game-information">Press start to play</h2>
-    <div id="buttons-container">
-      <div id="buttons">
-        <button class="red" disabled></button>
-        <button class="blue" disabled></button>
-        <button class="yellow" disabled></button>
-        <button class="green" disabled></button>
+    <div class="container text-center"><h1>SIMON SAYS</h1></div>
+    <div class="container text-center"><h2 id="game-information">Press start to play</h2></div>
+
+    <div class="container text-center">
+      <div class="row row-cols-2">
+        <div class="col"><button type="button"></button></div>
+        <div class="col"><button type="button"></button></div>
+        <div class="col"><button type="button"></button></div>
+        <div class="col"><button type="button"></button></div>
       </div>
     </div>
-    <div id="game-controls">
+    <div class="col text-center" id="game-controls">
       <button id="start-button" class="">START</button>
     </div>
-    <div id="turn-message">
+    <div class="col text-center" id="turn-message">
       <h2 class="hidden"></h2>
     </div>
     <div class="hidden">
