@@ -107,6 +107,9 @@ function announceWinner() {
 function gameOver() {
   resetGame();
   document.querySelector("#start-button").innerText = "START";
+  document.querySelector("#turn-state").className = "col-5 alert alert-danger";
+  document.querySelector("#game-information").className = "col-5 alert alert-danger";
+  document.querySelector("#game-instructions").className = "alert alert-danger";
   document.querySelector("#turn-state .h3").innerText = "Simon says game over !";
   const $gameOverSound = document.querySelector("#game-over-sound");
   $gameOverSound.play();
