@@ -1,30 +1,44 @@
-#buttons-container #buttons {
-  height: 450px;
+body {
+  background-color: whitesmoke;
+}
+
+#buttons {
+  height: 400px;
+  width: 600px;
   margin-top: 10px;
   margin-bottom: 10px;
+  pointer-events: none;
 }
 
 #red {
   background-color: red;
-  opacity: 0.5;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  opacity: 0.4;
   transition: opacity 500ms;
 }
 
 #blue {
   background-color: blue;
-  opacity: 0.5;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  opacity: 0.4;
   transition: opacity 500ms;
 }
 
 #yellow {
   background-color: yellow;
-  opacity: 0.5;
+  margin-top: 5px;
+  margin-right: 5px;
+  opacity: 0.4;
   transition: opacity 500ms;
 }
 
 #green {
   background-color: green;
-  opacity: 0.5;
+  margin-top: 5px;
+  margin-left: 5px;
+  opacity: 0.4;
   transition: opacity 500ms;
 }
 
