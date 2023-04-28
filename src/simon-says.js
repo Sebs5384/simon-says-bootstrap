@@ -8,7 +8,7 @@ document.querySelector("#start-button").onclick = function () {
 };
 
 document.querySelector("#buttons-container").onclick = function (event) {
-  const $clickedButton = event.target.className;
+  const $clickedButton = event.target.id;
   if ($clickedButton) {
     activateButton($clickedButton);
     handleClicks($clickedButton);
@@ -47,9 +47,9 @@ function playRound(nextSequence) {
 }
 
 function randomButton() {
-  const $buttons = document.querySelectorAll("#buttons-container button");
+  const $buttons = document.querySelectorAll("#buttons-container .col-5");
   const randomButton = $buttons[Math.floor(Math.random() * $buttons.length)];
-  return randomButton.className;
+  return randomButton.id;
 }
 
 function playerTurn(round) {
@@ -59,7 +59,7 @@ function playerTurn(round) {
 }
 
 function activateButton(color) {
-  const $button = document.querySelector(`.${color}`);
+  const $button = document.querySelector(`#${color}`);
   const $buttonSound = document.querySelector(`#audio-${color}-button`);
 
   $button.style.opacity = 1;
@@ -97,16 +97,16 @@ function handleClicks(clickedButton) {
 
 function announceWinner() {
   resetGame();
-  document.querySelector("#start-button").innerText = "Play again";
-  document.querySelector(".round-state").innerText = "Simon says you are the winner !";
+  document.querySelector("#start-button").innerText = "START";
+  document.querySelector("#turn-state .h3").innerText = "Simon says you are the winner !";
   const $winnerSound = document.querySelector("#winner-sound");
   $winnerSound.play();
 }
 
 function gameOver() {
   resetGame();
-  document.querySelector("#start-button").innerText = "PLAY AGAIN";
-  document.querySelector(".round-state").innerText = "Simon says game over !";
+  document.querySelector("#start-button").innerText = "START";
+  document.querySelector("#turn-state .h3").innerText = "Simon says game over !";
   const $gameOverSound = document.querySelector("#game-over-sound");
   $gameOverSound.play();
 }
@@ -136,19 +136,20 @@ function disableButtons() {
 }
 
 function hideStartButton() {
-  document.querySelector("#start-button").className = "hidden";
+  document.querySelector("#start-button").className = "col-1 btn btn-primary";
 }
 
 function displayStartButton() {
-  document.querySelector("#start-button").className = "";
+  document.querySelector("#start-button").className = "col-1 btn btn-primary";
 }
 
 function displayRounds(number) {
-  document.querySelector("#game-information").innerText = `Round: ${number} / 10`;
+  document.querySelector("#game-information").className = "col-5 alert alert-info h3";
+  document.querySelector("#game-information .h3").innerText = `Round: ${number} / 10`;
 }
 
 function displayScore(score) {
-  document.querySelector("#game-information").innerText = `Your score is ${score} / 10`;
+  document.querySelector("#game-information .h3").innerText = `Your score is ${score} / 10`;
 }
 
 function resetScore() {
@@ -156,10 +157,10 @@ function resetScore() {
 }
 
 function displayUserTurn() {
-  document.querySelector(".round-state").innerText = "Your turn !";
+  document.querySelector("#turn-state .h3").innerText = "Your turn !";
 }
 
 function displayCpuTurn() {
-  document.querySelector("#turn-message h2").className = "round-state";
-  document.querySelector(".round-state").innerText = "It is the computer turn !";
+  document.querySelector("#turn-state").className = "col-5 alert alert-info";
+  document.querySelector("#turn-state .h3").innerText = "It is the computer turn!";
 }
