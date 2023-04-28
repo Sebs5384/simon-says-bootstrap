@@ -9,6 +9,7 @@ document.querySelector("#start-button").onclick = function () {
 
 document.querySelector("#buttons-container").onclick = function (event) {
   const $clickedButton = event.target.id;
+  console.log($clickedButton);
   if ($clickedButton) {
     activateButton($clickedButton);
     handleClicks($clickedButton);
@@ -120,19 +121,13 @@ function resetGame() {
 }
 
 function enableButtons() {
-  const $buttons = document.querySelectorAll("#buttons-container button");
-
-  $buttons.forEach((button) => {
-    button.disabled = false;
-  });
+  const $buttons = document.querySelector("#buttons");
+  $buttons.style.pointerEvents = "auto";
 }
 
 function disableButtons() {
-  const $buttons = document.querySelectorAll("#buttons-container button");
-
-  $buttons.forEach((button) => {
-    button.disabled = true;
-  });
+  const $buttons = document.querySelector("#buttons");
+  $buttons.style.pointerEvents = "none";
 }
 
 function hideStartButton() {
