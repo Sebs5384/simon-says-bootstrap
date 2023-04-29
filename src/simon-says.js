@@ -9,6 +9,7 @@ document.querySelector("#start-button").onclick = function () {
 
 document.querySelector("#buttons-container").onclick = function (event) {
   const $clickedButton = event.target.id;
+  console.log($clickedButton);
   if ($clickedButton) {
     activateButton($clickedButton);
     handleClicks($clickedButton);
@@ -19,9 +20,9 @@ function startGame() {
   hideStartButton();
   displayRounds(round);
   displayCpuTurn();
-  displayHeaderMessage();
   nextRound();
   resetScore();
+  setAlertInfo();
 }
 
 function nextRound() {
@@ -84,9 +85,10 @@ function handleClicks(clickedButton) {
   if (playerPattern.length === cpuPattern.length) {
     score++;
     console.log(score);
-    if (playerPattern.length === 10) {
+    if (playerPattern.length === 1) {
       displayScore(score);
       announceWinner();
+      setAlertSuccess();
       return;
     }
     playerPattern = [];
@@ -107,10 +109,7 @@ function announceWinner() {
 
 function gameOver() {
   resetGame();
-  document.querySelector("#game-instructions div").className = "row justify-content-end";
-  document.querySelector("#turn-state").className = "col-5 alert alert-danger";
-  document.querySelector("#game-information").className = "col-5 alert alert-danger";
-  document.querySelector("#game-instructions").className = "alert alert-danger";
+  setAlertDanger();
   document.querySelector("#turn-state .h3").innerText = "Simon says game over !";
   const $gameOverSound = document.querySelector("#game-over-sound");
   $gameOverSound.play();
@@ -122,6 +121,10 @@ function resetGame() {
   round = 0;
   displayStartButton();
   disableButtons();
+}
+
+function resetScore() {
+  score = 0;
 }
 
 function enableButtons() {
@@ -152,10 +155,6 @@ function displayScore(score) {
   document.querySelector("#game-information .h3").innerText = `Your score is ${score} / 10`;
 }
 
-function resetScore() {
-  score = 0;
-}
-
 function displayUserTurn() {
   document.querySelector("#turn-state .h3").innerText = "Your turn !";
 }
@@ -163,4 +162,23 @@ function displayUserTurn() {
 function displayCpuTurn() {
   document.querySelector("#turn-state").className = "col-5 alert alert-info";
   document.querySelector("#turn-state .h3").innerText = "It is the computer turn!";
+}
+
+function setAlertDanger() {
+  document.querySelector("#game-instructions").className = "alert alert-danger";
+  document.querySelector("#game-information").className = "col-5 alert alert-danger";
+  document.querySelector("#turn-state").className = "col-5 alert alert-danger";
+  document.querySelector("#game-instructions div").className = "row justify-content-end";
+}
+
+function setAlertSuccess() {
+  document.querySelector("#game-instructions").className = "alert alert-success";
+  document.querySelector("#game-information").className = "col-5 alert alert-success";
+  document.querySelector("#turn-state").className = "col-5 alert alert-success";
+  document.querySelector("#game-instructions div").className = "row justify-content-end";
+}
+
+function setAlertInfo() {
+  document.querySelector("#game-instructions h6").innerText = "Memorize the sequence";
+  document.querySelector("#game-instructions").className = "alert alert-info";
 }
