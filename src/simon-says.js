@@ -88,7 +88,6 @@ function handleClicks(clickedButton) {
     if (playerPattern.length === 1) {
       displayScore(score);
       announceWinner();
-      setAlertSuccess();
       return;
     }
     playerPattern = [];
@@ -101,7 +100,8 @@ function handleClicks(clickedButton) {
 
 function announceWinner() {
   resetGame();
-  document.querySelector("#start-button").innerText = "START";
+  setAlert("success");
+  document.querySelector("#game-instructions h6").innerText = "Press start to play again";
   document.querySelector("#turn-state .h3").innerText = "Simon says you are the winner !";
   const $winnerSound = document.querySelector("#winner-sound");
   $winnerSound.play();
@@ -109,7 +109,8 @@ function announceWinner() {
 
 function gameOver() {
   resetGame();
-  setAlertDanger();
+  setAlert("danger");
+  document.querySelector("#game-instructions h6").innerText = "Press start to play again";
   document.querySelector("#turn-state .h3").innerText = "Simon says game over !";
   const $gameOverSound = document.querySelector("#game-over-sound");
   $gameOverSound.play();
@@ -139,11 +140,10 @@ function disableButtons() {
 
 function hideStartButton() {
   document.querySelector("#start-button").className = "col-1 btn btn-primary hidden";
-  document.querySelector("#game-instructions div").className = "row justify-content-center";
 }
 
 function displayStartButton() {
-  document.querySelector("#start-button").className = "col-1 btn btn-primary";
+  document.querySelector("#start-button").className = "col-md-1 offset-md-1 btn btn-primary";
 }
 
 function displayRounds(number) {
@@ -164,18 +164,11 @@ function displayCpuTurn() {
   document.querySelector("#turn-state .h3").innerText = "It is the computer turn!";
 }
 
-function setAlertDanger() {
-  document.querySelector("#game-instructions").className = "alert alert-danger";
-  document.querySelector("#game-information").className = "col-5 alert alert-danger";
-  document.querySelector("#turn-state").className = "col-5 alert alert-danger";
-  document.querySelector("#game-instructions div").className = "row justify-content-end";
-}
-
-function setAlertSuccess() {
-  document.querySelector("#game-instructions").className = "alert alert-success";
-  document.querySelector("#game-information").className = "col-5 alert alert-success";
-  document.querySelector("#turn-state").className = "col-5 alert alert-success";
-  document.querySelector("#game-instructions div").className = "row justify-content-end";
+function setAlert(context) {
+  document.querySelector("#game-instructions").className = `row alert alert-${context}`;
+  document.querySelector("#game-information").className = `col-5 alert alert-${context}`;
+  document.querySelector("#turn-state").className = `col-5 alert alert-${context}`;
+  document.querySelector("#start-button").className = `col-md-1 offset-md-1 btn btn-${context}`;
 }
 
 function setAlertInfo() {
