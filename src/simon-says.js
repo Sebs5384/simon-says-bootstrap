@@ -120,7 +120,6 @@ function resetGame() {
   playerPattern = [];
   cpuPattern = [];
   round = 0;
-  displayStartButton();
   disableButtons();
 }
 
@@ -140,10 +139,6 @@ function disableButtons() {
 
 function hideStartButton() {
   document.querySelector("#start-button").className = "col-1 btn btn-primary hidden";
-}
-
-function displayStartButton() {
-  document.querySelector("#start-button").className = "col-md-1 offset-md-1 btn btn-primary";
 }
 
 function displayRounds(number) {
