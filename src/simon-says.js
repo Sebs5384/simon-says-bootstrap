@@ -29,7 +29,7 @@ function nextRound() {
   round++;
   const nextSequence = Array.from(cpuPattern);
   nextSequence.push(randomButton());
-  disableButtons();
+  setButtonsPointerEvent("none");
   playRound(nextSequence);
   displayCpuTurn();
   cpuPattern = Array.from(nextSequence);
@@ -54,7 +54,7 @@ function randomButton() {
 }
 
 function playerTurn(round) {
-  enableButtons();
+  setButtonsPointerEvent("auto");
   displayRounds(round);
   displayUserTurn();
 }
@@ -127,14 +127,9 @@ function resetScore() {
   score = 0;
 }
 
-function enableButtons() {
+function setButtonsPointerEvent(value) {
   const $buttons = document.querySelector("#buttons");
-  $buttons.style.pointerEvents = "auto";
-}
-
-function disableButtons() {
-  const $buttons = document.querySelector("#buttons");
-  $buttons.style.pointerEvents = "none";
+  $buttons.style.pointerEvents = value;
 }
 
 function hideStartButton() {
