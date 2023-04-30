@@ -10,25 +10,34 @@
   </head>
 
   <body>
-    <div class="container text-center"><h1>SIMON SAYS</h1></div>
-    <div class="container text-center"><h2 id="game-information">Press start to play</h2></div>
+    <div class="container text-center">
+      <div class="row alert alert-info" id="game-instructions">
+        <h3 class="col-md-4 offset-md-4">SIMON SAYS</h3>
+        <button class="col-md-1 offset-md-1 btn btn-primary" id="start-button">START</button>
+        <div>
+          <h6 class="col">Press start to play</h6>
+        </div>
+      </div>
+    </div>
 
-    <div class="container text-center" id="buttons-container">
-      <div class="row row-cols-2 buttons">
-        <div class="col red">Red</div>
-        <div class="col blue">Blue</div>
+    <div class="container justify-content-center" id="buttons-container">
+      <div class="row justify-content-center">
+        <div class="row justify-content-center" id="buttons">
+          <div class="col-5" id="red"></div>
+          <div class="col-5" id="blue"></div>
+          <div class="col-5" id="yellow"></div>
+          <div class="col-5" id="green"></div>
+        </div>
       </div>
-      <div class="row buttons">
-        <div class="col yellow">Yellow</div>
-        <div class="col green">Green</div>
+    </div>
+
+    <div class="container text-center">
+      <div class="row justify-content-around">
+        <div class="col-5 alert alert-info hidden" id="game-information"><p class="h3"></p></div>
+        <div class="col-5 alert alert-info hidden" id="turn-state"><p class="h3"></p></div>
       </div>
     </div>
-    <div class="col text-center" id="game-controls">
-      <button id="start-button" class="">START</button>
-    </div>
-    <div class="col text-center" id="turn-message">
-      <h2 class="hidden"></h2>
-    </div>
+
     <div class="hidden">
       <audio id="audio-red-button"><source src="game-audio/red-push.wav" type="audio/wav" /></audio>
       <audio id="audio-blue-button"><source src="game-audio/blue-push.wav" type="audio/wav" /></audio>
