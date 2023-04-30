@@ -138,7 +138,7 @@ function disableButtons() {
 }
 
 function hideStartButton() {
-  document.querySelector("#start-button").className = "col-1 btn btn-primary hidden";
+  document.querySelector("#start-button").className = "hidden";
 }
 
 function displayRounds(number) {
