@@ -21,6 +21,6 @@ In future updates we are going to work into changing the styles by adding bootst
 # How to run the game
 
 To run the game, you can simply clone the repository and open the "index.html" file in your browser. 
-Alternatively, you can also play the game online by visiting the following link to gh-pages: https://sebs5384.github.io/simon-says/.
+Alternatively, you can also play the game online by visiting the following link to gh-pages: https://sebs5384.github.io/simon-says-bootstrap/src/
 
 
