@@ -101,7 +101,7 @@ function announceWinner() {
   resetGame();
   setAlert("success");
   document.querySelector("#game-instructions h6").innerText = "Press start to play again";
-  document.querySelector("#turn-state .h3").innerText = "Simon says you are the winner !";
+  document.querySelector("#turn-state .h3").innerText = "You are the winner !";
   const $winnerSound = document.querySelector("#winner-sound");
   $winnerSound.play();
 }
@@ -110,7 +110,7 @@ function gameOver() {
   resetGame();
   setAlert("danger");
   document.querySelector("#game-instructions h6").innerText = "Press start to play again";
-  document.querySelector("#turn-state .h3").innerText = "Simon says game over !";
+  document.querySelector("#turn-state .h3").innerText = "Game over !";
   const $gameOverSound = document.querySelector("#game-over-sound");
   $gameOverSound.play();
 }
@@ -137,12 +137,12 @@ function displayRounds(number) {
 }
 
 function displayScore(score) {
-  document.querySelector("#game-information .h3").innerText = `Your score is ${score} / 10`;
+  document.querySelector("#game-information .h3").innerText = `Your score: ${score} points`;
 }
 
 function displayTurns(currentPlayer) {
   document.querySelector("#turn-state").className = "col-5 alert alert-info";
-  document.querySelector("#turn-state .h3").innerText = `It is ${currentPlayer} turn`;
+  document.querySelector("#turn-state .h3").innerText = `It's ${currentPlayer} turn`;
 }
 
 function setAlert(context) {
