@@ -9,7 +9,6 @@ document.querySelector("#start-button").onclick = function () {
 
 document.querySelector("#buttons-container").onclick = function (event) {
   const $clickedButton = event.target.id;
-  console.log($clickedButton);
   if ($clickedButton) {
     activateButton($clickedButton);
     handleClicks($clickedButton);
@@ -17,12 +16,11 @@ document.querySelector("#buttons-container").onclick = function (event) {
 };
 
 function startGame() {
-  hideStartButton();
-  displayRounds(round);
-  displayCpuTurn();
-  nextRound();
-  resetScore();
+  hideElement("#start-button", "className");
+  displayTurns("computer's");
   setAlert("info");
+  displayRounds(round);
+  nextRound();
 }
 
 function nextRound() {
@@ -31,7 +29,7 @@ function nextRound() {
   nextSequence.push(randomButton());
   setButtonsPointerEvent("none");
   playRound(nextSequence);
-  displayCpuTurn();
+  displayTurns("computer's");
   cpuPattern = Array.from(nextSequence);
 
   setTimeout(() => {
@@ -56,7 +54,7 @@ function randomButton() {
 function playerTurn(round) {
   setButtonsPointerEvent("auto");
   displayRounds(round);
-  displayUserTurn();
+  displayTurns("your");
 }
 
 function activateButton(color) {
@@ -79,15 +77,16 @@ function handleClicks(clickedButton) {
   if (playerPattern[$pattern] !== cpuPattern[$pattern]) {
     displayScore(score);
     gameOver();
+    score = 0;
     return;
   }
 
   if (playerPattern.length === cpuPattern.length) {
     score++;
-    console.log(score);
-    if (playerPattern.length === 1) {
+    if (playerPattern.length === 10) {
       displayScore(score);
       announceWinner();
+      score = 0;
       return;
     }
     playerPattern = [];
@@ -123,17 +122,13 @@ function resetGame() {
   setButtonsPointerEvent("none");
 }
 
-function resetScore() {
-  score = 0;
-}
-
 function setButtonsPointerEvent(value) {
   const $buttons = document.querySelector("#buttons");
   $buttons.style.pointerEvents = value;
 }
 
-function hideStartButton() {
-  document.querySelector("#start-button").className = "hidden";
+function hideElement(selector, property) {
+  document.querySelector(`${selector}`)[`${property}`] = "hidden";
 }
 
 function displayRounds(number) {
@@ -145,13 +140,9 @@ function displayScore(score) {
   document.querySelector("#game-information .h3").innerText = `Your score is ${score} / 10`;
 }
 
-function displayUserTurn() {
-  document.querySelector("#turn-state .h3").innerText = "Your turn !";
-}
-
-function displayCpuTurn() {
+function displayTurns(currentPlayer) {
   document.querySelector("#turn-state").className = "col-5 alert alert-info";
-  document.querySelector("#turn-state .h3").innerText = "It is the computer turn!";
+  document.querySelector("#turn-state .h3").innerText = `It is ${currentPlayer} turn`;
 }
 
 function setAlert(context) {
