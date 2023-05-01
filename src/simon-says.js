@@ -22,7 +22,7 @@ function startGame() {
   displayCpuTurn();
   nextRound();
   resetScore();
-  setAlertInfo();
+  setAlert("info");
 }
 
 function nextRound() {
@@ -120,7 +120,7 @@ function resetGame() {
   playerPattern = [];
   cpuPattern = [];
   round = 0;
-  disableButtons();
+  setButtonsPointerEvent("none");
 }
 
 function resetScore() {
@@ -155,13 +155,13 @@ function displayCpuTurn() {
 }
 
 function setAlert(context) {
-  document.querySelector("#game-instructions").className = `row alert alert-${context}`;
-  document.querySelector("#game-information").className = `col-5 alert alert-${context}`;
-  document.querySelector("#turn-state").className = `col-5 alert alert-${context}`;
-  document.querySelector("#start-button").className = `col-md-1 offset-md-1 btn btn-${context}`;
-}
-
-function setAlertInfo() {
-  document.querySelector("#game-instructions h6").innerText = "Memorize the sequence";
-  document.querySelector("#game-instructions").className = "alert alert-info";
+  if (context === "danger" || context === "success") {
+    document.querySelector("#game-instructions").className = `row alert alert-${context}`;
+    document.querySelector("#game-information").className = `col-5 alert alert-${context}`;
+    document.querySelector("#turn-state").className = `col-5 alert alert-${context}`;
+    document.querySelector("#start-button").className = `col-md-1 offset-md-1 btn btn-${context}`;
+  } else {
+    document.querySelector("#game-instructions h6").innerText = "Memorize the sequence";
+    document.querySelector("#game-instructions").className = `alert alert-${context}`;
+  }
 }
