@@ -8,7 +8,7 @@ document.querySelector("#start-button").onclick = function () {
 };
 
 document.querySelector("#buttons-container").onclick = function (event) {
-  const $clickedButton = event.target.className;
+  const $clickedButton = event.target.id;
   if ($clickedButton) {
     activateButton($clickedButton);
     handleClicks($clickedButton);
@@ -16,21 +16,20 @@ document.querySelector("#buttons-container").onclick = function (event) {
 };
 
 function startGame() {
-  hideStartButton();
+  hideElement("#start-button", "className");
+  displayTurns("computer's");
+  setAlert("info");
   displayRounds(round);
-  displayCpuTurn();
   nextRound();
-  resetScore();
 }
 
 function nextRound() {
   round++;
-  score++;
   const nextSequence = Array.from(cpuPattern);
   nextSequence.push(randomButton());
-  disableButtons();
+  setButtonsPointerEvent("none");
   playRound(nextSequence);
-  displayCpuTurn();
+  displayTurns("computer's");
   cpuPattern = Array.from(nextSequence);
 
   setTimeout(() => {
@@ -47,19 +46,19 @@ function playRound(nextSequence) {
 }
 
 function randomButton() {
-  const $buttons = document.querySelectorAll("#buttons-container button");
+  const $buttons = document.querySelectorAll("#buttons-container .col-5");
   const randomButton = $buttons[Math.floor(Math.random() * $buttons.length)];
-  return randomButton.className;
+  return randomButton.id;
 }
 
 function playerTurn(round) {
-  enableButtons();
+  setButtonsPointerEvent("auto");
   displayRounds(round);
-  displayUserTurn();
+  displayTurns("your");
 }
 
 function activateButton(color) {
-  const $button = document.querySelector(`.${color}`);
+  const $button = document.querySelector(`#${color}`);
   const $buttonSound = document.querySelector(`#audio-${color}-button`);
 
   $button.style.opacity = 1;
@@ -76,15 +75,18 @@ function handleClicks(clickedButton) {
   $buttonSound.play();
 
   if (playerPattern[$pattern] !== cpuPattern[$pattern]) {
-    displayScore(score + 1);
+    displayScore(score);
     gameOver();
+    score = 0;
     return;
   }
 
   if (playerPattern.length === cpuPattern.length) {
+    score++;
     if (playerPattern.length === 10) {
-      displayScore(score + 1);
+      displayScore(score);
       announceWinner();
+      score = 0;
       return;
     }
     playerPattern = [];
@@ -97,16 +99,18 @@ function handleClicks(clickedButton) {
 
 function announceWinner() {
   resetGame();
-  document.querySelector("#start-button").innerText = "Play again";
-  document.querySelector(".round-state").innerText = "Simon says you are the winner !";
+  setAlert("success");
+  document.querySelector("#game-instructions h6").innerText = "Press start to play again";
+  document.querySelector("#turn-state .h3").innerText = "You are the winner !";
   const $winnerSound = document.querySelector("#winner-sound");
   $winnerSound.play();
 }
 
 function gameOver() {
   resetGame();
-  document.querySelector("#start-button").innerText = "PLAY AGAIN";
-  document.querySelector(".round-state").innerText = "Simon says game over !";
+  setAlert("danger");
+  document.querySelector("#game-instructions h6").innerText = "Press start to play again";
+  document.querySelector("#turn-state .h3").innerText = "Game over !";
   const $gameOverSound = document.querySelector("#game-over-sound");
   $gameOverSound.play();
 }
@@ -115,51 +119,40 @@ function resetGame() {
   playerPattern = [];
   cpuPattern = [];
   round = 0;
-  displayStartButton();
-  disableButtons();
+  setButtonsPointerEvent("none");
 }
 
-function enableButtons() {
-  const $buttons = document.querySelectorAll("#buttons-container button");
-
-  $buttons.forEach((button) => {
-    button.disabled = false;
-  });
+function setButtonsPointerEvent(value) {
+  const $buttons = document.querySelector("#buttons");
+  $buttons.style.pointerEvents = value;
 }
 
-function disableButtons() {
-  const $buttons = document.querySelectorAll("#buttons-container button");
-
-  $buttons.forEach((button) => {
-    button.disabled = true;
-  });
-}
-
-function hideStartButton() {
-  document.querySelector("#start-button").className = "hidden";
-}
-
-function displayStartButton() {
-  document.querySelector("#start-button").className = "";
+function hideElement(selector, property) {
+  document.querySelector(`${selector}`)[`${property}`] = "hidden";
 }
 
 function displayRounds(number) {
-  document.querySelector("#game-information").innerText = `Round: ${number} / 10`;
+  document.querySelector("#game-information").className = "col-5 alert alert-info h3";
+  document.querySelector("#game-information .h3").innerText = `Round: ${number} / 10`;
 }
 
 function displayScore(score) {
-  document.querySelector("#game-information").innerText = `Your score is ${score} / 10`;
+  document.querySelector("#game-information .h3").innerText = `Your score: ${score} points`;
 }
 
-function resetScore() {
-  score = 0;
+function displayTurns(currentPlayer) {
+  document.querySelector("#turn-state").className = "col-5 alert alert-info";
+  document.querySelector("#turn-state .h3").innerText = `It's ${currentPlayer} turn`;
 }
 
-function displayUserTurn() {
-  document.querySelector(".round-state").innerText = "Your turn !";
-}
-
-function displayCpuTurn() {
-  document.querySelector("#turn-message h2").className = "round-state";
-  document.querySelector(".round-state").innerText = "It is the computer turn !";
+function setAlert(context) {
+  if (context === "danger" || context === "success") {
+    document.querySelector("#game-instructions").className = `row alert alert-${context}`;
+    document.querySelector("#game-information").className = `col-5 alert alert-${context}`;
+    document.querySelector("#turn-state").className = `col-5 alert alert-${context}`;
+    document.querySelector("#start-button").className = `col-md-1 offset-md-1 btn btn-${context}`;
+  } else {
+    document.querySelector("#game-instructions h6").innerText = "Memorize the sequence";
+    document.querySelector("#game-instructions").className = `alert alert-${context}`;
+  }
 }

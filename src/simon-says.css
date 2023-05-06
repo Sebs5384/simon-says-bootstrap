@@ -1,67 +1,45 @@
-html {
+body {
   background-color: whitesmoke;
 }
 
-h1 {
-  background-color: whitesmoke;
-  display: flex;
-  justify-content: center;
-  border-style: outset;
-  width: 450px;
-  border-radius: 10px;
-  margin: auto;
-  margin-bottom: 20px;
+#buttons {
+  height: 400px;
+  width: 600px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  pointer-events: none;
 }
 
-h2 {
-  background-color: whitesmoke;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  border-style: outset;
-  width: 350px;
-  border-radius: 10px;
-  margin: 0 auto;
-}
-
-#buttons-container {
-  display: flex;
-  align-items: center;
-  width: 405px;
-  height: 350px;
-  margin: 0 auto;
-}
-
-#buttons button {
-  width: 200px;
-  height: 150px;
+#red {
+  background-color: red;
+  margin-bottom: 5px;
+  margin-right: 5px;
   opacity: 0.4;
   transition: opacity 500ms;
 }
 
-#game-controls {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 60px;
-  margin: 0 auto;
-}
-
-.red {
-  background-color: red;
-}
-
-.blue {
+#blue {
   background-color: blue;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  opacity: 0.4;
+  transition: opacity 500ms;
 }
 
-.yellow {
+#yellow {
   background-color: yellow;
+  margin-top: 5px;
+  margin-right: 5px;
+  opacity: 0.4;
+  transition: opacity 500ms;
 }
 
-.green {
+#green {
   background-color: green;
+  margin-top: 5px;
+  margin-left: 5px;
+  opacity: 0.4;
+  transition: opacity 500ms;
 }
 
 .hidden {
